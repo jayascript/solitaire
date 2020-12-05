@@ -4,7 +4,6 @@ import numpy as np
 
 
 class Card:
-
     def __init__(self, suit, value):
         """Initialize the Card class. Each card belongs to a suit, has
         a value, and can be flipped or not.
@@ -20,13 +19,11 @@ class Card:
         self.flipped = not self.flipped
 
     def __str__(self):
-        """Return the suit and value of a card, e.g. "3 ♠".
-        """
-        return(f"{self.value} {self.suit}")
-    
-    
-class Deck:
+        """Return the suit and value of a card, e.g. "3 ♠"."""
+        return f"{self.value} {self.suit}"
 
+
+class Deck:
     def __init__(self, values, suits):
         self.cards = []
         self.cache = []
@@ -69,37 +66,31 @@ class Deck:
             self.cards[0].flip()
             self.cards.append(self.cards.pop(0))
             self.cards[0].flip()
-            
-            
-class Stack:
 
+
+class Stack:
     def __init__(self):
-        """Initialize the Stack class.
-        """
+        """Initialize the Stack class."""
         self.cards = []
 
     def add_card(self, Card):
-        """Add a card to a stack. Inserts the card into the first position.
-        """
+        """Add a card to a stack. Inserts the card into the first position."""
         self.cards.insert(0, Card)
 
     def flip_first_card(self):
-        """Flip the first card in the stack if there are cards in the stack.
-        """
+        """Flip the first card in the stack if there are cards in the stack."""
         if len(self.cards) > 0:
             self.cards[0].flip()
 
     def get_face_up_cards(self):
-        """Return the cards in the stack that are currently face_up.
-        """
+        """Return the cards in the stack that are currently face_up."""
         return [card for card in self.cards if card.flipped]
 
     def __str__(self):
         """Return the current stack as the number of face_down cards and then
         each face_up card by value and suit.
         """
-        returned_cards = [str(card) for card in reversed(
-            self.get_face_up_cards())]
+        returned_cards = [str(card) for card in reversed(self.get_face_up_cards())]
         face_down_count = len(self.cards) - len(self.get_face_up_cards())
         if face_down_count > 0:
             returned_cards.insert(0, f"{face_down_count} cards face down.")
